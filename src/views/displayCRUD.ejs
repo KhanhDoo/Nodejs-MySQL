@@ -13,11 +13,31 @@
     td {
         border: 1px solid black;
     }
+
+    .btn-edit {
+        background-color: orange;
+        outline: none;
+        border: none;
+        height: 25px;
+        width: 60px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .btn-delete {
+        background-color: rgb(250, 49, 49);
+        outline: none;
+        border: none;
+        height: 25px;
+        width: 60px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
 </style>
 
 <body>
 
-    <h2>TH elements define table headers</h2>
+    <h2>Create new user</h2>
 
     <table style="width:100%">
         <tr>
@@ -25,6 +45,7 @@
             <th>Firstname</th>
             <th>Lastname</th>
             <th>Gender</th>
+            <th>Action</th>
         </tr>
         <% for(var i=0; i < dataTable.length; i++) { %>
             <tr>
@@ -38,7 +59,11 @@
                     <%= dataTable[i].lastName %>
                 </td>
                 <td>
-                    <%= dataTable[i].gender==1?'Nam':'Nữ' %>
+                    <%= dataTable[i].gender==1?'Male':'Female' %>
+                </td>
+                <td>
+                    <a href="/edit-crud?id=<%= dataTable[i].id %>" class="btn-edit" type="button">Edit</a>
+                    <a href="/delete-crud?id=<%= dataTable[i].id %>" class="btn-delete" type="button">Delete</a>
                 </td>
             </tr>
             <% } %>
