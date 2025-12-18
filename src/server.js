@@ -4,10 +4,11 @@ import initWebRouters from './router/web'
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import connectDB from "./config/connectDB";
+import cors from 'cors'
 
 dotenv.config();
-
 let app = express();
+app.use(cors({ origin: true, credentials: true }))
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
