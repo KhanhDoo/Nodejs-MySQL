@@ -1,5 +1,6 @@
 import bcrypt from "bcryptjs";
 import db from "../models/index";
+import { raw } from "body-parser";
 
 
 
@@ -80,6 +81,7 @@ let updateUserData = (data) => {
                 where: {
                     id: data.id,
                 },
+                raw: false
             })
             if (user) {
                 user.firstName = data.firstName;
@@ -102,7 +104,8 @@ let deleteUserById = (userId) => {
     return new Promise(async (resolve, reject) => {
         try {
             let user = await db.User.findOne({
-                where: { id: userId }
+                where: { id: userId },
+                raw: false
             })
             if (user) {
                 await user.destroy();
