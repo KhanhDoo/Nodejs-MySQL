@@ -39,7 +39,34 @@ let handleGetAllUsers = async (req, res) => {
     })
 }
 
+let handleCreateNewUser = async (req, res) => {
+    console.log("--- Check data gui len: ", req.body); // <--- THÊM DÒNG NÀY
+    let message = await userService.createNewUser(req.body)
+    console.log(message)
+    return res.status(200).json(message)
+}
+
+let handleDeleteUser = async (req, res) => {
+    if (!req.body.id) {
+        return res.status(200).json({
+            errCode: 1,
+            errMessage: 'Không tìm thấy id người dùng để xóa!'
+        })
+    }
+    let message = await userService.deleteUser(req.body.id)
+    return res.status(200).json(message)
+}
+
+let handleEditUser = async (req, res) => {
+    let data = req.body;
+    let message = await userService.updateUserData(data);
+    return res.status(200).json(message)
+
+}
 module.exports = {
     handleLogin: handleLogin,
-    handleGetAllUsers: handleGetAllUsers
+    handleGetAllUsers: handleGetAllUsers,
+    handleCreateNewUser: handleCreateNewUser,
+    handleEditUser: handleEditUser,
+    handleDeleteUser: handleDeleteUser,
 }

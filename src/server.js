@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 configViewEngine(app);
 initWebRouters(app);
-
+console.log("Router da duoc load")
 connectDB();
 
 let port = process.env.PORT || 8000;
